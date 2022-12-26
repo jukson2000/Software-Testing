@@ -1,5 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class FailRegistration {
 
@@ -14,18 +15,14 @@ public class FailRegistration {
         driver.findElement(By.id("customer.reg_email")).sendKeys("WilliamRGarrard");
         driver.findElement(By.id("customer.reg_password")).sendKeys("xxxxxx");
         driver.findElement(By.id("customer.reg_password_verify")).sendKeys("Smoke1337!");
-        WebElement button;
-		try {
-		    button = driver.findElement(By.xpath("//button[@type='submit' and @class='account-button button full theme-primary-button border-radius']")).click();
-		} catch (NoSuchElementException e) {
-		    button = null;
-		}   
+        driver.findElement(By.xpath("//button[@type='submit' and @class='account-button button full theme-primary-button border-radius']")).click();
 
-        if (button = null) {
-			System.out.println("Test is succesful, update isnt allowed");
-		} else {
-			System.out.println("Test is not succesful, update allowed");
-		}	
-}
-}
+        WebElement sPAN = driver.findElement(By.xpath("//*[text()='This field is required.']"));
 
+		String text = sPAN.getText();
+
+		if (text.equals("This field is required.")) {
+			System.out.println("There has been an error in changing information");
+        }
+    }
+}

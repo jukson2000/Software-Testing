@@ -1,5 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class ConPref {
 
@@ -15,58 +16,22 @@ public class ConPref {
         }, 3000);
 
         timeout.setTimeout(() -> {
-            WebElement button;
-		try {
-		    button = driver.findElement(By.xpath("//*[text()='By Email']")).click();
-		} catch (NoSuchElementException e) {
-		    button = null;
-		}   
-
-        if (button != null) {
-			System.out.println("Test is succesful, update is allowed");
-		} else {
-			System.out.println("Test is not succesful, update isnt allowed");
-		}	
-
-        try {
-		    button = driver.findElement(By.xpath("//*[text()='By SMS']")).click();
-		} catch (NoSuchElementException e) {
-		    button = null;
-		}   
-
-        if (button != null) {
-			System.out.println("Test is succesful, update is allowed");
-		} else {
-			System.out.println("Test is not succesful, update isnt allowed");
-		}
-
-        try {
-		    button = driver.findElement(By.xpath("//*[text()='By Post']")).click();
-		} catch (NoSuchElementException e) {
-		    button = null;
-		}   
-
-        if (button != null) {
-			System.out.println("Test is succesful, update is allowed");
-		} else {
-			System.out.println("Test is not succesful, update isnt allowed");
-		}
-            
-        try {
-		    button = driver.findElement(By.xpath("//*[text()='Check all']")).click();
-		} catch (NoSuchElementException e) {
-		    button = null;
-		}   
-
-        if (button != null) {
-			System.out.println("Test is succesful, update is allowed");
-		} else {
-			System.out.println("Test is not succesful, update isnt allowed");
-		}
-            
-        }, 6000); 
+            driver.findElement(By.xpath("//*[text()='By Email']")).click();
+            driver.findElement(By.xpath("//*[text()='By SMS']")).click();
+            driver.findElement(By.xpath("//*[text()='By Post']")).click();
+            driver.findElement(By.xpath("//*[text()='Check all']")).click();
+        }, 3000); 
 
         
+        WebElement sPAN = driver.findElement(By.xpath("//*[text()='Update Contact Preferences']"));
 
+		String text = sPAN.getText();
+
+		if (text.equals("Update Contact Preferences")) {
+			System.out.println("Preferences successfully updated");
+        }
+        else {
+            System.out.println("There has been an error in changing preferences");
+        }
   }
 }

@@ -1,6 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
 import java.util.List;
 
 public class Black {
@@ -30,8 +31,12 @@ public class Black {
         List<WebElement> spans = driver.findElements(By.cssSelector("span.ais-Highlight-nonHighlighted"));
 
         for (WebElement span : spans) {
-        if (span.getText().contains("Black")) {
+        if (!span.getText().contains("Black")) {
             System.out.println("Error: Span does not contain the text 'Black'");
+            break;
+        }
+        else {
+            System.out.println("All products are of the selected color");
             break;
         }
         }

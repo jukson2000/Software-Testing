@@ -1,5 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class Login {
 
@@ -11,7 +12,17 @@ public class Login {
     driver.findElement(By.id("customer.email")).sendKeys("ismarpolovina@icloud.com");
     driver.findElement(By.id("customer.password")).sendKeys("Smoke1337!");
     driver.findElement(By.className("account-button")).click();
-    System.out.println("Test passed account login is valid");
+
+    WebElement sPAN = driver.findElement(By.xpath("//*[text()='Update your information']"));
+
+		String text = sPAN.getText();
+
+		if (text.equals("Update your information")) {
+			System.out.println("Login successefull");
+        }
+        else {
+            System.out.println("Error during login");
+        }
     }
     
 }

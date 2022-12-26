@@ -2,9 +2,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class ProfileUpdate {
 
-    public ProfileUpdate(){}
+public class FailProfileUpdate {
+
+    public FailProfileUpdate(){}
     private static Timeout timeout;
 
     public static void Run(WebDriver driver) {
@@ -18,42 +19,27 @@ public class ProfileUpdate {
         timeout.setTimeout(() -> {
             WebElement firstNameInput = driver.findElement(By.name("first_name"));
             firstNameInput.clear();
-            firstNameInput.sendKeys("Sacir");
         }, 2000);
     
         driver.findElement(By.xpath("//*[text()='Accept']")).click();
 
         WebElement lastNameInput = driver.findElement(By.name("last_name"));
         lastNameInput.clear();
-        lastNameInput.sendKeys("Ademovic");
 
         WebElement telInput = driver.findElement(By.id("customer.mobile"));
         telInput.clear();
-        telInput.sendKeys("387644444686");
 
         driver.findElement(By.className("ant-select-show-arrow")).click();
-        driver.findElements(By.cssSelector("div[title='1']")).get(0).click();
 
-        WebElement companyInput = driver.findElement(By.id("customer.company"));
-        companyInput.clear();
-        companyInput.sendKeys("Grab");
-
-        WebElement vatNumberInput = driver.findElement(By.id("customer.vat_number"));
-        vatNumberInput.clear();
-        vatNumberInput.sendKeys("27368337");
-
-        driver.findElement(By.xpath("//*[text()='Save changes']")).click(); 
-        
-        
-        WebElement sPAN = driver.findElement(By.xpath("//*[text()='Update Account Details']"));
+        WebElement sPAN = driver.findElement(By.xpath("//*[text()='This field is required.']"));
 
 		String text = sPAN.getText();
 
-		if (text.equals("Update Account Details")) {
-			System.out.println("Profile updated");
+		if (text.equals("This field is required.")) {
+			System.out.println("There has been an error in changing information");
+        } else {
+            System.out.println("Profile updated");
         }
-        else {
-            System.out.println("Error changing profile information");
-        }
+       
   }
 }

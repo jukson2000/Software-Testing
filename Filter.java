@@ -53,7 +53,8 @@ public class Filter {
         }, 3000);
 
         List<WebElement> priceSpans = driver.findElements(By.cssSelector("span.product-price"));
-        
+
+        boolean allPricesLessThan1001 = true;
         boolean allPricesBetween10and30 = true;
         for (WebElement priceSpan : priceSpans) {
             String priceText = priceSpan.getText();
@@ -64,7 +65,7 @@ public class Filter {
                 break;
             }
         }
-        if (allPricesBetween10and30) {
+        if (allPricesLessThan1001) {
             System.out.println("There are no items that are not between 30$ and 50$");
         } else {
             System.out.println("There are items that are not between 30$ and 50$");
@@ -87,7 +88,7 @@ public class Filter {
                 break;
             }
         }
-        if (allPricesBetween30and50) {
+        if (allPricesLessThan1001) {
             System.out.println("There are no items that are not between 30$ and 50$");
         } else {
             System.out.println("There are items that are not between 30$ and 50$");
